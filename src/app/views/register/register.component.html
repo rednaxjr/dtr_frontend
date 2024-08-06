@@ -1,0 +1,153 @@
+<div class="   h-full w-full">
+   <div
+      class="h-full w-full flex justify-center items-center overflow-y-auto   ">
+      <div
+         class="h-full md:lg:xl:2xl:h-auto  rounded-10 w-full lg:xl:2xl:w-[40%] bg-white flex px-4 py-5">
+         <!-- <div
+            class="w-full  lg:xl:2xl:p-8 hidden lg:xl:2xl:block ">
+            <div class="border-2 h-full">
+               aa
+            </div>
+         </div> -->
+
+         <form [formGroup]="registrationForm" (ngSubmit)="handleSubmit()"
+            class="w-full">
+            <div>
+               <p class="font-extrabold text-5xl">Register Account</p>
+            </div>
+            <div class="flex flex-row">
+               <div class="flex flex-col w-full mr-2  ">
+                  <label for="fname">
+                     First Name
+                  </label>
+                  <div class="relative">
+                     <input type="text" formControlName="fname"
+                        placeholder="Enter your First Name" name="fname" />
+                     <div class="absolute top-1 left-1  text-gray-600">
+                        <mat-icon aria-hidden="false"
+                           aria-label="Example home icon"
+                           fontIcon="person"></mat-icon>
+                     </div>
+                  </div>
+               </div>
+               <div class="flex flex-col w-full  ml-2">
+                  <label for="fname">
+                     Last Name
+                  </label>
+                  <div class="relative">
+                     <input type="text" formControlName="lname"
+                        placeholder="Enter your Las Name" name="lname" />
+                        <div class="absolute top-1 left-1  text-gray-600">
+                           <mat-icon aria-hidden="false"
+                              aria-label="Example home icon"
+                              fontIcon="person"></mat-icon>
+                        </div>
+                  </div>
+               </div>
+            </div>
+            <div class="flex flex-col w-full mt-2">
+               <label for="email">
+                  Email
+               </label>
+               <div class="relative">
+                  <input type="email" formControlName="email"
+                  placeholder="sample@youremail.com" name="email" />
+                     <div class="absolute top-1 left-1  text-gray-600">
+                        <mat-icon aria-hidden="false"
+                           aria-label="Example home icon"
+                           fontIcon="mail"></mat-icon>
+                     </div>
+               </div>
+               
+            </div>
+            <div class="flex flex-col w-full  mt-2">
+               <label for="password">
+                  Password
+               </label>
+               <div class="relative">
+                  <input type="password" formControlName="password"
+                  placeholder="Enter your password" name="password" />
+                     <div class="absolute top-1 left-1  text-gray-600">
+                        <mat-icon aria-hidden="false"
+                           aria-label="Example home icon"
+                           fontIcon="lock"></mat-icon>
+                     </div>
+               </div>
+               
+            </div>
+            <div class="flex flex-col w-full  mt-2">
+               <label for="password">
+                  Re-Type Password
+               </label>
+               <div class="relative">
+               <input type="password" formControlName="repass"
+                  placeholder="Re enter your password" name="repass" />
+                  <div class="absolute top-1 left-1  text-gray-600">
+                     <mat-icon aria-hidden="false"
+                        aria-label="Example home icon"
+                        fontIcon="lock"></mat-icon>
+                  </div>
+               </div>
+            </div>
+            <div class="flex  w-full  justify-center mt-10">
+               <button type="submit"
+                  class="border border-gray-200 text-white bg-blue-600 py-3 px-12 rounded-[8px] mr-10"
+                  routerLink>Back</button>
+               <button type="submit"
+                  class="border border-gray-200 text-white bg-green-600 py-3 px-12 rounded-[8px]">Submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+<!-- <div class="ng-scope">
+
+   <div class="w-2/6 h-auto bg-white rounded-[8px]">
+      <div class="content-wrapper px-4 py-2">
+         <h2>Register</h2>
+         <form [formGroup]="registrationForm" (ngSubmit)="handleSubmit()">
+            <div class="flex flex-row">
+               <div class="flex flex-col w-full mr-2">
+                  <label for="fname">
+                     First Name
+                  </label>
+                  <input type="text" formControlName="fname" />
+               </div>
+               <div class="flex flex-col w-full  ml-2">
+                  <label for="fname">
+                     Last Name
+                  </label>
+                  <input type="text" formControlName="lname" />
+               </div>
+            </div>
+
+            <div class="flex flex-col w-full mt-2">
+               <label for="email">
+                  Email
+               </label>
+               <input type="email" formControlName="email" />
+            </div>
+            <div class="flex flex-col w-full  mt-2">
+               <label for="password">
+                  Password
+               </label>
+               <input type="password" formControlName="password" />
+            </div>
+            <div class="flex flex-col w-full  mt-2">
+               <label for="password">
+                  Re-Type Password
+               </label>
+               <input type="password" formControlName="password" />
+            </div>
+            <div class="flex  w-full  justify-center mt-10">
+               <button type="submit"
+                  class="border border-gray-200 text-white bg-blue-600 py-3 px-12 rounded-[8px] mr-10" routerLink="">Back</button>
+               <button type="submit"
+                  class="border border-gray-200 text-white bg-green-600 py-3 px-12 rounded-[8px]">Submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+
+</div> -->

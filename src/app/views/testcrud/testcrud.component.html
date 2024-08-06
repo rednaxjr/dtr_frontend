@@ -1,0 +1,46 @@
+ <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="data">
+        <ng-container matColumnDef="fname">
+            <th mat-header-cell *matHeaderCellDef> First Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.first_name }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="lname">
+            <th mat-header-cell *matHeaderCellDef> Last Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.last_name }} </td>
+        </ng-container>
+        <ng-container matColumnDef="posId">
+            <th mat-header-cell *matHeaderCellDef> Postion Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.email }} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+                <button (click)="updateUser(element)"
+                    class="border px-2 py-1 mr-1 bg-blue-600 text-white">Update</button>
+                <button (click)="deleteUser(element)"
+                    class="border px-2 py-1 ml-1 bg-red-600 text-white">Delete</button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <br><br>
+    <div >
+        <label class="text-white" for="dataId">id</label>
+        <input class="ml-2" type="text" name="dataId" readonly="readonly"
+            [(ngModel)]="dataId" />
+        <label class="ml-2 text-white" for="datafname">First Name</label>
+        <input class="ml-2" type="text" name="datafname"
+            [(ngModel)]="datafname" />
+        <label class="ml-2 text-white" for="datalname">Last Name</label>
+        <input class="ml-2" type="text" name="datalname"
+            [(ngModel)]="datalname" />
+        <label class="ml-2 text-white" for="dataemail">Email Address</label>
+        <input class="ml-2" type="text" name="dataemail"
+            [(ngModel)]="dataemail" />
+        <button (click)="updateUserData()"
+            class="border px-2 py-1 mr-1 bg-blue-600 text-white ml-5">Update</button>
+    </div>
+
+</div>
