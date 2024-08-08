@@ -6,27 +6,35 @@ import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  // intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  //   const token = localStorage.getItem('token');
+  //   const authReq = token ? req.clone({ headers: req.headers.set('x-auth-token', token) }) : req;
 
+  //   console.log("aaaasdawdaw")
+  //   return next.handle(authReq);
+  // }
+ 
   constructor(private authService: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('token');
-    let authReq = req;
-    if (token) {
-      authReq = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-    }
+      const token = localStorage.getItem('token');
+      let authReq = req;
 
-    return next.handle(authReq).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          // Handle unauthorized errors here (e.g., redirect to login)
-        }
-        return throwError(error);
-      })
-    );
+      if (token) {
+          authReq = req.clone({
+              setHeaders: {
+                  Authorization: `Bearer ${token}`
+              }
+          });
+      }
+
+      return next.handle(authReq).pipe(
+          catchError((error: HttpErrorResponse) => {
+              if (error.status === 401) {
+                  this.authService.logout();
+              }
+              return throwError(error);
+          })
+      );
   }
 }

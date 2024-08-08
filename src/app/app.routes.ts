@@ -4,21 +4,35 @@ import { RegisterComponent } from './views/register/register.component';
 import { IndexComponent } from './views/index/index.component';
 import { IndexLayoutComponent } from './component/layout/index-layout/index-layout.component';
 import { TestcrudComponent } from './views/testcrud/testcrud.component';
+import { UserLayoutComponent } from './component/layout/user-layout/user-layout.component';
+import { HomeComponent } from './views/user/home/home.component';
+import { AuthGuard } from './services/auth.guard';
+import { ProfileComponent } from './views/user/profile/profile.component';
+
 TestcrudComponent
 export const routes: Routes = [
-    { path: '', redirectTo: '', pathMatch: 'full' },
-    { path: '**', redirectTo: '' },
+     
     {
         path: '',
-        component: IndexLayoutComponent,
+        component: IndexLayoutComponent, 
         children: [
             { path: '', component: IndexComponent, },
             { path: 'register', component: RegisterComponent, },
             { path: 'test', component: TestcrudComponent }
         ],
+    },
+    {
+        path: 'user',
+        component: UserLayoutComponent,
+        canActivate: [AuthGuard],
+        children: [
+            { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard]},
+            { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 
-    }, 
-   
+        ],
+    },
+    { path: '', redirectTo: '/', pathMatch: 'full' }, 
+
 ];
 
 // @NgModule({
@@ -28,5 +42,5 @@ export const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
-  })
-  export class AppRoutingModule {}
+})
+export class AppRoutingModule { }

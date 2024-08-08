@@ -31,9 +31,10 @@ export class UserService {
   deleteAccount(data: any) {
     return this.httpClient.post(this.url + "/deleteById/",data)
   }
-  loginAccount(data:any){
-    return this.httpClient.post(this.url + "/loginAccount/",data, this.headers)
-  }
+  // loginAccount(data:any){
+  //   return this.httpClient.post(this.url + "/loginAccount/",data, this.headers)
+  // }
+ 
   // (){
   //   return this.httpClient.get()
   // }
