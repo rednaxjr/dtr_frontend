@@ -32,7 +32,7 @@ export class AuthService {
         }
     }
 
-    get token() {
+    getToken() {
         return this.userSubject.asObservable();
     }
     // login(data: any): Observable<any> {
@@ -52,7 +52,7 @@ export class AuthService {
             })
         );
     }
-    logout() {
+    logout() { 
         localStorage.removeItem('token');
         this.userSubject.next(null);
         this.router.navigate(['/']).then(() => {
@@ -72,6 +72,7 @@ export class AuthService {
             return false;
         }
         if (this.jwtHelper.isTokenExpired(token)) {
+            alert("session expired")
             this.logout(); // Automatically log out if the token is expired
             return false;
         }

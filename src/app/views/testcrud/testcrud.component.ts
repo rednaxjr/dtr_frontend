@@ -17,12 +17,10 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 })
 
 
-export class TestcrudComponent implements OnInit {
-
+export class TestcrudComponent implements OnInit { 
   constructor(
     private userService: UserService,
-    private route: Router,
-
+    private route: Router, 
   ) {
 
   }

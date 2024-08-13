@@ -1,34 +1,38 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core'; 
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
-
+  private jwtHelper = new JwtHelperService();
+  
   constructor(
-    
+
   ) {
 
-  } 
-  getItem(key: string): string | null { 
+  }
+  getItem(key: string): string | null {
     try {
       return localStorage.getItem("token");
     } catch (error) {
       console.error('Failed to get item from localStorage:', error);
       return null;
-    } 
+    }
   }
 
-  getToken() { 
+  getToken() {
     try {
-      
       return localStorage.getItem("token");
     } catch (error) {
       console.error('Failed to get item from localStorage:', error);
       return null;
-    } 
+    }
   }
- 
+   
+
+   
+
   setItem(key: string, value: string): void {
 
     try {
@@ -38,7 +42,7 @@ export class StorageService {
     } catch (error) {
       console.error('Failed to set item in localStorage:', error);
     }
-  } 
+  }
   removeItem(key: string): void {
 
     try {
@@ -47,8 +51,8 @@ export class StorageService {
       console.error('Failed to remove item from localStorage:', error);
     }
   }
- 
-  clear(){ 
+
+  clear() {
     try {
       localStorage.clear();
     } catch (error) {

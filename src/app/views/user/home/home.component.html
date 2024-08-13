@@ -1,4 +1,20 @@
-<p>home works!</p>
-<button type="submit"
-class="   text-white bg-red-600 mt-2 py-3 px-12 rounded-[8px] m-auto w-full"
-(click)="submit()">Logout</button>
+<div>
+    <h1>
+        Dashboard
+    </h1>
+    <div class="flex justify-end">
+        <button class="flex px-4 py-2 bg-green-600 text-white rounded-[8px] items-center">
+            <mat-icon  >
+                add
+            </mat-icon>
+            <span class="text-base font-medium">Add Log</span>
+        </button> 
+    </div>
+    <app-table [data]="users">
+
+        <span class="action">World</span>
+    </app-table>
+
+
+   
+</div>

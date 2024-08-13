@@ -7,6 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth.guard';
+import { MatIconModule } from '@angular/material/icon';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
@@ -17,6 +18,7 @@ export const appConfig: ApplicationConfig = {
       withFetch(), 
       // withInterceptors([AuthInterceptor])
     ),
+    MatIconModule,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     AuthService,
     AuthGuard,

@@ -11,10 +11,10 @@ import { ProfileComponent } from './views/user/profile/profile.component';
 
 TestcrudComponent
 export const routes: Routes = [
-     
+
     {
         path: '',
-        component: IndexLayoutComponent, 
+        component: IndexLayoutComponent,
         children: [
             { path: '', component: IndexComponent, },
             { path: 'register', component: RegisterComponent, },
@@ -26,12 +26,16 @@ export const routes: Routes = [
         component: UserLayoutComponent,
         canActivate: [AuthGuard],
         children: [
-            { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard]},
-            { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+            {
+                path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard], data: {
+                    title: 'Dashboard'
+                }
+            },
+            { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
 
         ],
     },
-    { path: '', redirectTo: '/', pathMatch: 'full' }, 
+    { path: '', redirectTo: '/', pathMatch: 'full' },
 
 ];
 
