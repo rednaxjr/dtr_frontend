@@ -12,12 +12,11 @@ interface AuthResponse {
     token: string;
 }
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-
 export class AuthService {
-    private jwtHelper = new JwtHelperService(); 
-    private apiUrl = 'http://localhost:3000/api/'; 
+    private jwtHelper = new JwtHelperService();
+    private apiUrl = 'http://localhost:3000/api/';
     private userSubject = new BehaviorSubject<any>(null);
 
     headers = {
@@ -34,38 +33,23 @@ export class AuthService {
 
     getToken() {
         return this.userSubject.asObservable();
-    }
-    // login(data: any): Observable<any> {
-    //     return this.http.post<{ token: string }>(`${this.apiUrl}/`, data, this.headers)
-    //         .pipe(
-    //             tap((response: any) => {
-    //                 localStorage.setItem('token', response.token);
-    //             })
-    //         );
-    // }
-
-    login(data:any): Observable<AuthResponse> {
-        return this.http.post<AuthResponse>(this.apiUrl + "user/loginAccount/",data, this.headers).pipe(
+    } 
+    login(data: any): Observable<AuthResponse> {
+        return this.http.post<AuthResponse>(this.apiUrl + "auth/loginAccount/", data, this.headers).pipe(
             tap(response => {
                 localStorage.setItem('token', response.token);
                 this.userSubject.next(this.jwtHelper.decodeToken(response.token));
             })
         );
     }
-    logout() { 
+    logout() {
         localStorage.removeItem('token');
         this.userSubject.next(null);
         this.router.navigate(['/']).then(() => {
             history.pushState(null, '', '/');
         });
-        
-    }
 
-
-    // isAuthenticated(): boolean { 
-    //     const token = localStorage.getItem('token'); 
-    //     return token ? !this.jwtHelper.isTokenExpired(token) : false;
-    // }
+    } 
     isAuthenticated(): boolean {
         const token = localStorage.getItem('token');
         if (!token) {
@@ -82,5 +66,7 @@ export class AuthService {
     getUser(): Observable<any> {
         return this.userSubject.asObservable();
     }
-   
+
+
+
 }

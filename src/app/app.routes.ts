@@ -6,19 +6,25 @@ import { IndexLayoutComponent } from './component/layout/index-layout/index-layo
 import { TestcrudComponent } from './views/testcrud/testcrud.component';
 import { UserLayoutComponent } from './component/layout/user-layout/user-layout.component';
 import { HomeComponent } from './views/user/home/home.component';
-import { AuthGuard } from './services/auth.guard';
+ 
 import { ProfileComponent } from './views/user/profile/profile.component';
+import { AuthGuard } from './services/auth.guard';
+import { HistoryComponent } from './views/user/history/history.component';
+import { ReportComponent } from './views/user/report/report.component';
+import { OcrComponent } from './views/ocr/ocr.component';
 
 TestcrudComponent
 export const routes: Routes = [
-
+    
     {
         path: '',
         component: IndexLayoutComponent,
         children: [
-            { path: '', component: IndexComponent, },
+            // { path: '', component: IndexComponent, },
+            { path: '', component: OcrComponent },
             { path: 'register', component: RegisterComponent, },
-            { path: 'test', component: TestcrudComponent }
+            { path: 'test', component: TestcrudComponent },
+            // { path: 'ocr', component: OcrComponent }
         ],
     },
     {
@@ -26,12 +32,10 @@ export const routes: Routes = [
         component: UserLayoutComponent,
         canActivate: [AuthGuard],
         children: [
-            {
-                path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard], data: {
-                    title: 'Dashboard'
-                }
-            },
+            {path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard], data: {title: 'Dashboard'}},
             { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+            { path: 'history', component: HistoryComponent, canActivate: [AuthGuard] },
+            { path: 'report', component: ReportComponent, canActivate: [AuthGuard] },
 
         ],
     },

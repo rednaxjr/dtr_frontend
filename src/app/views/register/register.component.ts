@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { UserService } from '../../services/user.service';
+ 
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -21,9 +22,8 @@ export class RegisterComponent implements OnInit {
     repass: new FormControl('', [Validators.required]),
   });
   constructor(
-    private router: Router,
-    private userService: UserService,
-
+    private router: Router, 
+    private userService:UserService
   ) {
 
   }
@@ -79,7 +79,7 @@ export class RegisterComponent implements OnInit {
         // this.registrationForm.value.password = ""
         // this.registrationForm.value.repass = ""
         console.log(res)
-      }, (error) => {
+      }, (error:any) => {
         console.log(error)
       })
     }

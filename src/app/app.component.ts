@@ -3,6 +3,7 @@ import { RouterOutlet, RouterModule, Route, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { AuthService } from './services/auth.service';
+ AuthService
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -20,12 +21,6 @@ export class AppComponent {
     private authService: AuthService,
   ) {  }
   ngOnInit() { 
-    if (this.authService.isAuthenticated()) {
-      
-      console.log("naa")
-    } else { 
-      console.log("wala")
-
-    }
+    
   }
 }

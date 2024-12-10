@@ -1,0 +1,15 @@
+
+.images{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .mole {
+    width: 10rem;
+    height: 10rem;
+    margin-bottom: 1rem;
+  }
+
+.Preview{
+  background:"url('./app/assets/img/img_placeholder.jpg')";
+}

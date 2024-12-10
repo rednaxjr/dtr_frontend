@@ -1,5 +1,6 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { decodeJwtToken } from '../_helpers/jwt.util';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,8 @@ export class StorageService {
   }
   getItem(key: string): string | null {
     try {
+      const item = localStorage.getItem(key);
+      return item ? JSON.parse(item) : null;
       return localStorage.getItem("token");
     } catch (error) {
       console.error('Failed to get item from localStorage:', error);
@@ -30,7 +33,18 @@ export class StorageService {
     }
   }
    
-
+  getDecodedToken(data:any): any {
+    const token = localStorage.getItem(data);
+    if (token) {
+      try {
+        return decodeJwtToken(token);
+      } catch (e) {
+        console.error('Error decoding token:', e);
+        return null;
+      }
+    }
+    return null;
+  }
    
 
   setItem(key: string, value: string): void {

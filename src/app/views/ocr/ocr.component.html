@@ -1,0 +1,29 @@
+<h1>
+    OCR
+
+</h1>
+
+<div class="container">
+
+    <!-- <div class="bg-no-repeat   border h-[250px] w-[450px]"
+        [ngClass]="{
+        'Preview': PreviewImage == '' ,
+        'flex-justify whitespace-normal': PreviewImage != '', 
+    }"> -->
+    <div class="bg-no-repeat   border border-black h-[250px] w-[450px]">
+
+        <!-- <img
+            *ngIf="!PreviewImage"
+            src="./assets/img/img_placeholder.jpg"
+            alt="Placeholder"
+            class="h-full w-full bg-green-400" /> -->
+        <img [src]="PreviewImage" alt    class="h-full w-full bg-green-700"
+             />
+    </div>
+    <div>
+        <input type="file" (change)="onFileSelected($event)">
+    </div>
+    <div>
+        {{text}}
+    </div>
+</div>

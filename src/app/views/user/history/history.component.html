@@ -1,0 +1,80 @@
+<h1>History</h1>
+<div class="flex justify-end"> 
+    <button (click)="openAddTime()" [disabled]="timeLogs.length == 0"
+        class="flex px-4 py-2 bg-green-600 text-white rounded-[8px] items-center">
+        Add Time
+    </button>
+</div>
+<p class="italic m-0">Filters</p>
+
+<div class="filter">
+    <div class="filter-button">
+
+        <label for="month-select">Year</label>
+        <select id="month-select" [(ngModel)]="selectedYear"
+            (ngModelChange)="filter()">
+            <option *ngFor="let year of years" [value]="year.value"
+                (click)="selectedYear = year.value">{{ year.name }}</option>
+        </select>
+    </div>
+
+    <div class="filter-button">
+        <label for="month-select">Month</label>
+        <select id="month-select" [(ngModel)]="selectedMonth"
+            (ngModelChange)="filter()">
+            <option *ngFor="let month of months" [value]="month.value"
+                (click)="selectedMonth = month.value">{{ month.name }}</option>
+        </select>
+
+    </div>
+
+</div>
+
+<div class="bg-white w-auto m-auto mt-2 md:lg:xl:px-0 pb-10">
+    <div class="overflow-hidden rounded-5 border border-colorTheme2">
+        <app-table2 [labels]="table_headers" [data]="timeLogs"
+            class="md:mt-0 lg:mt-0 xl:mt-0">
+            <div
+                class="grid flex-wrap space-x-1 space-y-1 md:grid sm:flex xl:flex lg:flex justify-start">
+                <ng-container>
+                    <ng-template #actions let-default let-index="index">
+                        <div class="flex justify-center items-center py-2">
+                            <button
+                                (click)="view(default, index)"
+                                [disabled]="default.logs.length === 0"
+                                [ngClass]="{'bg-gray-300 text-gray-400':default.logs.length === 0}"
+                                class="flex items-center text-center h-auto font-medium border border-gray-400 text-sm rounded-5 px-2 py-1 bg-white">
+                                <mat-icon [inline]="true"
+                                    *ngIf="!default.isOpen">visibility</mat-icon>
+                                <mat-icon [inline]="true"
+                                    *ngIf="default.isOpen">visibility_off</mat-icon>
+                            </button>
+                            <button
+                                (click)="add(default, index )"
+                                *ngIf="default.isOpen"
+                                [disabled]="default.logs.length >= 10"
+                                class="flex items-center text-center h-auto font-medium border border-gray-400 text-sm rounded-5 px-2 py-1 text-blue-600 bg-white ml-2">
+                                <mat-icon [inline]="true">add</mat-icon>
+                            </button>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                <ng-container>
+                    <ng-template #actions2 let-default let-j="j">
+                        <div class="flex justify-center items-center py-2">
+                            <button (click)="update(default,j)"
+                                class="flex items-center text-center h-auto font-medium border border-gray-400 text-sm rounded-5 px-2 py-1 text-blue-600 bg-white ">
+                                <mat-icon [inline]="true">edit</mat-icon>
+                            </button>
+                            <button (click)="del(default,j)"
+                                class="flex items-center text-center h-auto font-medium border border-gray-400 text-sm rounded-5 px-2 py-1 ml-2 text-red-600 bg-white  ">
+                                <mat-icon [inline]="true">delete</mat-icon>
+                            </button>
+                        </div>
+                    </ng-template>
+                </ng-container>
+            </div>
+        </app-table2>
+    </div>
+</div>
+<div class="h-20"></div>

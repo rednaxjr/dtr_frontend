@@ -2,19 +2,75 @@
     <h1>
         Dashboard
     </h1>
-    <div class="flex justify-end">
-        <button class="flex px-4 py-2 bg-green-600 text-white rounded-[8px] items-center">
-            <mat-icon  >
-                add
-            </mat-icon>
-            <span class="text-base font-medium">Add Log</span>
-        </button> 
+    <div class="flex justify-end"> 
+        <button
+            [disabled]="timeLogs.length >= 10"
+            (click)="clockIn()"
+            class="flex px-4 py-2 bg-green-600 text-white rounded-[8px] items-center"> 
+            <span
+                class="text-base font-medium">
+                {{ timeLogs.length % 2 !== 0 ? ' Time out' : ' Time In' }}
+            </span>
+        </button>
     </div>
-    <app-table [data]="users">
+    <div class="bg-white w-auto m-auto mt-2 md:lg:xl:px-0">
+        <div class="overflow-hidden rounded-5 border border-colorTheme2">
+            <app-table [labels]="table_headers" [data]="timeLogs"
+                class="md:mt-0 lg:mt-0 xl:mt-0">
+                <div
+                    class="grid flex-wrap space-x-1 space-y-1 md:grid sm:flex xl:flex lg:flex justify-start">
+                    <!-- <ng-template #actions let-default>
+                        <button
+                            (click)="update(default)"
+                            class="font-medium border border-colorTheme text-colorTheme text-sm rounded-5 px-2 py-1">
+                            Update
+                        </button>
+                        <button
+                            (click)="deleteTimLog(default)"
+                            class="font-medium border border-colorTheme text-colorTheme text-sm rounded-5 px-2 py-1">
+                            Delete
+                        </button>
 
-        <span class="action">World</span>
-    </app-table>
+                    </ng-template> -->
+                </div>
 
+            </app-table>
+        </div>
+    </div>
+    <!-- <app-table [labels]="table_headers" [data]="timeLogs">
 
-   
+        <ng-template actions>
+            <button>Edit</button>
+            <button>Delete</button>
+        </ng-template>
+        <div *ngFor="let i of timeLogs">
+            <div class="actionTemplate">
+                <button
+                (click)="test(i)"
+                    class="font-medium border border-colorTheme text-colorTheme text-sm rounded-5 px-2 py-1">
+                    Respond 
+                </button>
+            </div>
+        </div> 
+    </app-table> -->
+
+    <!--   <table class="md:mt-0 lg:mt-0 xl:mt-0" :labels="table_headers"
+        :data="displayedQuestionnaire"
+        :notifField="'file_id'">
+        <template v-slot:action="{ item }">
+            <div
+                class="grid flex-wrap space-x-1 space-y-1 md:grid sm:flex xl:flex lg:flex justify-start">
+
+                <button :id="'Delete_' + item.id"
+                    class="border border-red-600 text-red-600 rounded-5 px-2 py-1"
+                    v-if="id == item.user.id && item.form_statusId == 1"
+                    @mouseover="OpenToolTip(item.id, 5)"
+                    @mouseout="OpenToolTip(item.id, 0)"
+                    @click="DeleteQuestionaire(item)">
+                    Delete
+                </button>
+            </div>
+        </template>
+    </table> -->
+
 </div>

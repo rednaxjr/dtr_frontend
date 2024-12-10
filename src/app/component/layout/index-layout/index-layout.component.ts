@@ -21,11 +21,9 @@ export class IndexLayoutComponent {
       
     // }
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['user/dashboard']);
-      console.log("naa")
+      this.router.navigate(['user/dashboard']); 
     } else {
-      this.router.navigate(['/']);
-      console.log("wala")
+      this.router.navigate(['/']); 
 
     }
   }

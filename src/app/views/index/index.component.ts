@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { UserService } from '../../services/user.service';
+ 
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../../services/auth.service';
+import { MatIconModule } from '@angular/material/icon'; 
+import { UserService } from '../../services/user.service';
 import { StorageService } from '../../services/storage.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-index',
@@ -18,10 +19,9 @@ import { StorageService } from '../../services/storage.service';
 export class IndexComponent implements OnInit {
 
   constructor(
-    private router: Router,
-    private userService: UserService,
-    private authService: AuthService,
+    private router: Router,  
     private storageService:StorageService,
+    private authService:AuthService,
   ) {
 
   }
@@ -30,13 +30,9 @@ export class IndexComponent implements OnInit {
   isLogin: boolean = true;
 
 
-  ngOnInit(): void {
-    this.testt();
+  ngOnInit(): void { 
   }
-
-  async testt() {
-    console.log("Aaaaaaaaa")
-  }
+ 
   // async submit() {
   //   console.log("aaa")
   //   const data = {
@@ -56,8 +52,7 @@ export class IndexComponent implements OnInit {
       username: this.email,
       password: this.password
     } 
-    this.authService.login(data).subscribe((res: any) => { 
-      console.log(res)
+    this.authService.login(data).subscribe((res: any) => {  
       this.storageService.setItem('token', res.token);
       this.router.navigate(['/user/dashboard']);
     }, (error) => {

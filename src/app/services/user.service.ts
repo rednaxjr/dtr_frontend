@@ -31,6 +31,21 @@ export class UserService {
   deleteAccount(data: any) {
     return this.httpClient.post(this.url + "/deleteById/",data)
   }
+  getUserTimeLogById(data: any) {
+    return this.httpClient.post(this.url + "/getUserTimeLogById/",data)
+  }
+  getUserTodayLogsById(data: any) {
+    return this.httpClient.post(this.url + "/getUserTodayLogsById/",data)
+  }
+  getTLByDate(data: any) {
+    return this.httpClient.post(this.url + "/getTLByDate/",data)
+  }
+
+  getReportsByDate(data: any) {
+    return this.httpClient.post(this.url + "/getReportsByDate/",data)
+  }
+  
+  
   // loginAccount(data:any){
   //   return this.httpClient.post(this.url + "/loginAccount/",data, this.headers)
   // }

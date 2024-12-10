@@ -1,8 +1,7 @@
-<mat-sidenav-container class="w-full h-full  ">
-
-    <mat-sidenav #drawer mode="side" opened class="shadow-md ">
-        <!-- <mat-sidenav #drawer mode="side" opened class="shadow-md "> -->
-        <div class="w-full h-18 bg-green-600"> 
+<mat-sidenav-container class="w-full h-full  "> 
+    <mat-sidenav #drawer [mode]="isSide ? 'over' : 'side'" [opened]="isOpen" class="shadow-md"   [fixedInViewport]="!isSmall"
+      > 
+        <div class="w-full h-18 bg-green-600">
         </div>
         <mat-nav-list>
             <li *ngFor="let i of sideBarRoutes">
@@ -14,13 +13,13 @@
                     </mat-icon>
                     {{i.name}}
                 </a>
-            </li> 
+            </li>
         </mat-nav-list>
-    </mat-sidenav> 
-    <mat-sidenav-content class="overflow-hidden fixed">
-        <mat-toolbar  class="fixed-header   drop-shadow-md  ">
+    </mat-sidenav>
+    <mat-sidenav-content class="fixed overflow-y-hidden">
+        <mat-toolbar class="fixed-header   drop-shadow-md  ">
             <div class="flex w-full justify-between  items-center ">
-                <div>
+                 
                     <button
                         type="button"
                         aria-label="Toggle sidenav"
@@ -28,15 +27,17 @@
                         (click)="drawer.toggle()">
                         <mat-icon
                             aria-label="Side nav toggle icon">menu</mat-icon>
-                    </button>
-                </div> 
+                    </button> 
                 <span class="example-spacer"></span>
-                <button mat-icon-button  
-                    [matMenuTriggerFor]="menu"> 
-                    <mat-icon
-                        class="material-symbols-outlined"
-                        aria-hidden="false"> account_circle</mat-icon> 
-                </button>
+                <div class="flex  justify-between items-center ">
+                    <span>{{user.email}}</span>
+                    <button mat-icon-button
+                        [matMenuTriggerFor]="menu">
+                        <mat-icon
+                            class="material-symbols-outlined"
+                            aria-hidden="false"> account_circle</mat-icon>
+                    </button>
+                </div>
             </div>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item>
@@ -45,15 +46,15 @@
                     <span>Profile</span>
                 </button>
                 <button mat-menu-item (click)="logout()">
-                    <mat-icon class="material-symbols-outlined"> 
+                    <mat-icon class="material-symbols-outlined">
                         logout
                     </mat-icon>
                     <span>logout</span>
                 </button>
             </mat-menu>
         </mat-toolbar>
-        <div class="main-content">
-            <router-outlet  ></router-outlet>
+        <div class="main-content  h-full">
+            <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>
 

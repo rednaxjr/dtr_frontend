@@ -1,0 +1,112 @@
+<table id="datatable" class="w-full mx-auto table-fixed">
+    <tr>
+        <th *ngFor="let label of labels; let i = index"
+            [ngClass]="{'text-center': label.field === 'action'}"
+            class="font-poppins text-xs text-left bg-colorTheme font-medium   px-6 md:py-3">
+
+            {{ label.text }}
+        </th>
+
+    </tr>
+    <tbody>
+        <tr *ngIf="data.length === 0; else elseBlock"
+            class="bg-grey-100 border-b border-t border-gray-400 transition duration-300 ease-in-out pl-0">
+            <td [attr.colspan]="labels.length"
+                class="text-center font-poppins text-xs text-gray-500 italic md:border-b md:border-l md:border-r md:border-t md:border-gray-400 p-3 md:p-0">
+                No data found.
+            </td>
+        </tr>
+
+        <ng-template #elseBlock>
+            <ng-container *ngFor="let label of data; let i = index">
+                <tr
+                    class="bg-grey-100 border-b border-t border-gray-400 transition duration-300 ease-in-out md:mt-0">
+                    <td *ngFor="let item of labels; let labelIndex = index"
+                        [attr.data]="item.text"
+                        class="   text-gray-600 font-poppins font-light py-2 md:py-1 lg:py-1 xl:py-1 px-6 text-justify withData  "
+                        [ngClass]="{
+                            'flex justify-evenly items-center whitespace-normal': item.field === 'action',
+                            'flex-justify whitespace-normal': item.field === 'date',
+                            'whitespace-normal': item.field !== 'action' && item.field !== 'date'
+                        }">
+
+                        <!-- Date Field -->
+                        <ng-container *ngIf="item.field === 'date'">
+                            <div>
+                                {{label[item.field] === 0 || label[item.field]
+                                === '0' ? '0' : (label[item.field] || '-')}}
+                            </div>
+                        </ng-container>
+
+                        <!-- Logs Field -->
+                        <ng-container
+                            *ngIf="item.field == 'logs'; ">
+                            <!-- {{label.isOpen}} - {{dropDownisShown}} -->
+                            <div class="flex py-2" *ngIf="!label.isOpen ">
+                                {{ label[item.field][0].time }} - {{
+                                label[item.field][label[item.field].length-1].time
+                                }}
+                            </div>
+                            <div class="flex py-2"
+                                *ngIf="label.isOpen  &&dropDownisShown">
+                                {{ label[item.field][0].time }} - {{
+                                label[item.field][label[item.field].length-1].time
+                                }}
+                            </div>
+
+                            <div *ngIf="label.isOpen  &&!dropDownisShown ">
+                                <div *ngFor="let i of label[item.field] "
+                                    class="flex py-2 ">
+                                    {{i.time }} - {{i.status}}
+                                </div>
+                            </div>
+
+                        </ng-container>
+                        <ng-container
+                            *ngIf="item.field == 'action'; dropDownisShown"
+                            class="flex w-full">
+                            <ng-container
+                                *ngTemplateOutlet="actionsTemplate; context: { $implicit: label, index: i }"></ng-container>
+                        </ng-container>
+
+                    </td>
+                </tr>
+
+                <!-- Expanded Details -->
+                <ng-container *ngIf="label.isOpen && dropDownisShown">
+                    
+                    <tr
+                        class="bg-gray-100 border-b border-t  transition duration-300 ease-in-out md:mt-0 w-full border-black">
+                        <td
+                            *ngFor="let item of labels; let labelIndex = index"
+                            [attr.data]="item.text"
+                            class="text text-xs  text-gray-600 font-poppins font-light   text-justify withData items-center"> 
+                            <ng-container *ngIf="item.field === 'logs'" class="">
+                                <div
+                                    *ngFor="let log of label[item.field]"
+                                    class="w-full border-gray-500 border-t border-b">
+                                    <div
+                                        class="flex items-center py-3 text-sm">
+                                        {{ log.time }} - {{ log.status
+                                        }}
+                                    </div>
+                                </div>
+                            </ng-container> 
+                            <ng-container
+                                *ngIf="item.field === 'action'">
+                                <div
+                                    *ngFor="let log_data of label['logs']; let j = index"
+                                    class="w-full border-gray-500 border-t border-b "> 
+                                    <ng-container
+                                        *ngTemplateOutlet="actions2Template; context: { $implicit: log_data, index: j }"></ng-container>
+                                </div>
+                            </ng-container>
+
+                        </td>
+                    </tr>
+                </ng-container>
+
+            </ng-container>
+        </ng-template>
+    </tbody>
+</table>
